@@ -18,7 +18,7 @@ fn gen_random_word(path: &str) -> String {
     let mut split_words = content.split('\n');
     let rand_ind = rng.gen_range(0..split_words.clone().count());
     let rand_word = split_words.nth(rand_ind);
-    if let None = rand_word {
+    if rand_word.is_none() {
         return gen_random_word(path);
     }
     rand_word.unwrap().to_string()
@@ -38,7 +38,7 @@ fn main() {
         );
         print!("Input > ");
         io::stdout().flush().unwrap();
-        if let Err(_) = io::stdin().read_line(&mut buffer) {
+        if io::stdin().read_line(&mut buffer).is_err() {
             println!("Try again! Couldn't understand you that time.");
             continue;
         }
@@ -46,7 +46,7 @@ fn main() {
         if trimmed_buf.eq("q") {
             break;
         }
-        if let Some(letter) = trimmed_buf.chars().nth(0) {
+        if let Some(letter) = trimmed_buf.chars().next() {
             h.update(letter);
         } else {
             println!("Make sure to type a letter.");

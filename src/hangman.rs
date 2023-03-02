@@ -63,4 +63,8 @@ impl Hangman {
             self.wrong_letters.push(ltr);
         }
     }
+
+    pub fn check_state(&self) -> bool {
+        !self.current_guess.contains('-')
+    }
 }

@@ -64,7 +64,7 @@ impl Hangman {
         }
     }
 
-    pub fn check_state(&self) -> bool {
+    pub fn is_word_found(&self) -> bool {
         !self.current_guess.contains('-')
     }
 }
